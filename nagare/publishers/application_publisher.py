@@ -9,6 +9,7 @@
 # this distribution.
 # --
 
+from functools import partial
 from nagare.server import http_publisher
 
 
@@ -29,5 +30,5 @@ class Publisher(http_publisher.Publisher):
         self.has_multi_processes = has_multi_processes
         self.has_multi_threads = has_multi_threads
 
-    def _serve(self, app, **params):
-        return lambda environ, start_response: self.start_handle_request(app, environ, start_response)
+    def _serve(self, app, services_service, **params):
+        return partial(services_service, self.start_handle_request, app)
