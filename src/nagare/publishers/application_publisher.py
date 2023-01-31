@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 # --
-# Copyright (c) 2008-2022 Net-ng.
+# Copyright (c) 2008-2023 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -10,21 +10,16 @@
 # --
 
 from functools import partial
+
 from nagare.server import http_publisher
 
 
 class Publisher(http_publisher.Publisher):
-    CONFIG_SPEC = dict(
-        http_publisher.Publisher.CONFIG_SPEC,
-        has_multi_processes='boolean',
-        has_multi_threads='boolean'
-    )
+    CONFIG_SPEC = dict(http_publisher.Publisher.CONFIG_SPEC, has_multi_processes='boolean', has_multi_threads='boolean')
 
     def __init__(self, name, dist, has_multi_processes, has_multi_threads, **config):
         super(Publisher, self).__init__(
-            name, dist,
-            has_multi_processes=has_multi_processes, has_multi_threads=has_multi_threads,
-            **config
+            name, dist, has_multi_processes=has_multi_processes, has_multi_threads=has_multi_threads, **config
         )
 
         self.has_multi_processes = has_multi_processes

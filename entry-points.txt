@@ -1,0 +1,2 @@
+[nagare.publishers]
+application = nagare.publishers.application_publisher:Publisher
